@@ -7,6 +7,8 @@
 #include <sys/ptrace.h>
 #include <sys/wait.h>
 #include <sys/user.h>
+#include <sys/uio.h>
+#include <elf.h>
 
 int dbg_create_process(const char* filepath)
 {
@@ -66,6 +68,24 @@ void dbg_cont(int pid)
   ptrace(PTRACE_CONT, pid, 0, 0);
 }
 
+void dbg_getregs(int pid, struct user_regs_struct* regs)
+{
+#if defined(__amd64__)
+  ptrace(PTRACE_GETREGS, pid, 0, regs);
+  printf("rip %lx\n", regs->rip);
+#elif defined(__aarch64__)
+  struct iovec iov;
+  iov.iov_len = sizeof(*regs);
+  iov.iov_base = regs;
+  
+  ptrace(PTRACE_GETREGSET, pid, NT_PRSTATUS, &iov);
+
+  printf("pc %lx\n", regs->pc);
+#endif
+}
+
+
+
 #define TEST_HELLO_PATH "../tests/hello" 
 #define TEST_DEADLOCK_PATH "../tests/deadlock"
 
@@ -79,7 +99,7 @@ int main()
   ptrace(PTRACE_SETOPTIONS, pid, 0, options);
 
   int go = 1;
-  char tb[3];
+  char tb[4];
   while (go)
   {
     scanf("%s", &tb);
@@ -93,13 +113,21 @@ int main()
       dbg_catch_process(pid);
 
       struct user_regs_struct regs;
-      ptrace(PTRACE_GETREGS, pid, 0, &regs);
-      printf("rip %lx\n", regs.rip);
+      dbg_getregs(pid, &regs);
+
     }
     if (tb[0] == 'c')
     {
       dbg_cont(pid);
       dbg_catch_process(pid);
+    }
+
+    if (tb[0]=='k')
+    {
+      ptrace(PTRACE_SYSCALL, pid, 0, 0);
+      dbg_catch_process(pid);
+      struct user_regs_struct regs;
+      dbg_getregs(pid, &regs);
     }
   }
   return 0;
