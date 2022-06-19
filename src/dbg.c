@@ -8,6 +8,8 @@
 #include <sys/wait.h>
 #include <sys/user.h>
 #include <sys/uio.h>
+// #include <sys/siginfo.h>
+
 #include <elf.h>
 
 int dbg_create_process(const char* filepath)
@@ -76,14 +78,34 @@ void dbg_getregs(int pid, struct user_regs_struct* regs)
 #elif defined(__aarch64__)
   struct iovec iov;
   iov.iov_len = sizeof(*regs);
-  iov.iov_base = regs;
-  
+  iov.iov_base = regs;  
   ptrace(PTRACE_GETREGSET, pid, NT_PRSTATUS, &iov);
+ 
+  int i;
+  for (i=0;i<=30;i++)
+  {
+    printf("x%i: %lx\n", i, regs->regs[i]);
+  }
 
   printf("pc %lx\n", regs->pc);
+  printf("sp %lx\n", regs->sp);
+  printf("pstate %lx\n", regs->pstate);
 #endif
 }
 
+void dbg_get_signfo(int pid)
+{
+  siginfo_t signfo;
+  ptrace(PTRACE_GETSIGINFO, pid, 0, &signfo);
+  printf("signo: %i(SIG%s)\n", signfo.si_signo, strsignal(signfo.si_signo));
+}
+
+void dbg_get_event(int pid)
+{
+  unsigned long eventmsg;
+  ptrace(PTRACE_GETEVENTMSG, pid, 0, &eventmsg);
+  printf("eventmsg %i\n", eventmsg);
+}
 
 
 #define TEST_HELLO_PATH "../tests/hello" 
@@ -102,34 +124,36 @@ int main()
   char tb[4];
   while (go)
   {
+    printf("toydbg>");
     scanf("%s", &tb);
-    if (tb[0] == 'q')
-    {
-      go = 0;
-    }
-    if (tb[0] == 's')
-    {
-      dbg_singlestep(pid);
-      dbg_catch_process(pid);
 
-      struct user_regs_struct regs;
-      dbg_getregs(pid, &regs);
-
-    }
-    if (tb[0] == 'c')
+    switch(tb[0])
     {
-      dbg_cont(pid);
-      dbg_catch_process(pid);
+      case 'q': go =0; break;
+      case 's': {  	
+        struct user_regs_struct regs; 
+        dbg_singlestep(pid);
+        dbg_catch_process(pid);
+        dbg_getregs(pid, &regs);
+	break;
+      }
+      case 'c': {
+        dbg_cont(pid);
+        dbg_catch_process(pid);
+        break;
+      }
+      case 'k': {
+        ptrace(PTRACE_SYSCALL, pid, 0, 0);
+        dbg_catch_process(pid);
+        struct user_regs_struct regs;
+        dbg_getregs(pid, &regs);
+	break;
+      }
     }
-
-    if (tb[0]=='k')
-    {
-      ptrace(PTRACE_SYSCALL, pid, 0, 0);
-      dbg_catch_process(pid);
-      struct user_regs_struct regs;
-      dbg_getregs(pid, &regs);
-    }
+    dbg_get_signfo(pid);
+    dbg_get_event(pid);
   }
+ 
   return 0;
 }
 #endif
