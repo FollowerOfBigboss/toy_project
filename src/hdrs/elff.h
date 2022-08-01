@@ -26,6 +26,7 @@
   #error "Is there any elf format exist for your architecture?"
 #endif
 
+#include "disas.h"
 
 struct MappedElf
 {
@@ -38,6 +39,7 @@ void dump_elf_header32(Elf32_Ehdr* elf32);
 void dump_elf_header64(Elf64_Ehdr* elf64);
 int is_elf_file(struct MappedElf* map);
 
+static const char* gcn_elfsym_info(unsigned char info);
 static const char* gcn_elfphdr_type(uint32_t ptype);
 
 void MapElf(const char* filepath, struct MappedElf* map)
@@ -55,14 +57,14 @@ void MapElf(const char* filepath, struct MappedElf* map)
     if (elf[EI_CLASS]==ELFCLASS64)
     {   
       Elf64_Ehdr* elf64ehdr = (Elf64_Ehdr*)map->elfmap;
-      dump_elf_header64(elf64ehdr);
+      // dump_elf_header64(elf64ehdr);
       
       
       Elf64_Phdr* elf64phdr;
       int i;
       for (i =0; i<elf64ehdr->e_phnum; i++){
         elf64phdr = (Elf64_Phdr*)(map->elfmap+elf64ehdr->e_phoff+sizeof(Elf64_Phdr)*i);
-	printf("type: %s\n", gcn_elfphdr_type(elf64phdr->p_type));
+	// printf("type: %s\n", gcn_elfphdr_type(elf64phdr->p_type));
       }
 
 
@@ -72,13 +74,27 @@ void MapElf(const char* filepath, struct MappedElf* map)
 
       for(i=0; i<elf64ehdr->e_shnum; i++){
         elf64shdr = (Elf64_Shdr*)(map->elfmap+elf64ehdr->e_shoff+i*elf64ehdr->e_shentsize);
-	printf("Section name: %s\n", symstr + elf64shdr->sh_name);
+	// printf("Section name: %s\n", symstr + elf64shdr->sh_name);
+
+	/*
+	if (elf64shdr->sh_type == SHT_STRTAB){
+	  char* content = map->elfmap+elf64shdr->sh_offset;
+
+	  int ss=0;
+	  for (;ss<elf64shdr->sh_size;ss++){
+            printf("%c", content[ss]);    
+	  }
+
+	}
+	*/
+
+	
 	if (elf64shdr->sh_type == SHT_SYMTAB){
 
-	  printf("Symbol Table!\n");
-	  printf("sh_name %i sh_size %llu\n", elf64shdr->sh_name, elf64shdr->sh_size);
+	  // printf("Symbol Table!\n");
+	  // printf("sh_name %i sh_size %llu\n", elf64shdr->sh_name, elf64shdr->sh_size);
 	  
-	  printf("%llu\n", elf64shdr->sh_size/elf64shdr->sh_entsize);
+	  // printf("%llu\n", elf64shdr->sh_size/elf64shdr->sh_entsize);
 
 	  Elf64_Sym* symtable = (Elf64_Sym*)(map->elfmap+elf64shdr->sh_offset);
 	  char* symbol_names=(char*)(map->elfmap+section[elf64shdr->sh_link].sh_offset);
@@ -87,9 +103,46 @@ void MapElf(const char* filepath, struct MappedElf* map)
 	  int s;
 	  for (s=0;s<symbol_count;s++)
 	  {
-	    printf("size %i name %s\n", symtable[s].st_size, symbol_names+symtable[s].st_name);
+	    // printf("%x <%s> %i (%s)\n", symtable[s].st_value ,symbol_names+symtable[s].st_name, symtable[s].st_size, gcn_elfsym_info(symtable[s].st_info));
+	  
+	    if (ELF64_ST_TYPE(symtable[s].st_info) == STT_FUNC)
+	    {
+              if(symtable[s].st_size ==0)
+		      continue;
+
+	    printf("%x <%s> %i (%s)\n", symtable[s].st_value ,symbol_names+symtable[s].st_name, symtable[s].st_size, gcn_elfsym_info(symtable[s].st_info));
+	    int addr = symtable[s].st_value;
+	    int size = symtable[s].st_size;
+
+            // printf("Elf start: %x symsize %x calculated pos %x", map->elfmap, size, map->elfmap+addr);
+
+	   
+            char bytes[300];
+	    int ff;
+	    char hxx;
+
+	    printf("%i %i %i sfinp 2104\n", addr, 0x1000, addr-0x1000);
+	    
+	    int calc = addr-0x1000;
+	    for(ff=0;ff<size;ff++){
+	      hxx =  *(char*)((map->elfmap+calc+ff)); // *(char*)((map->elfmap+addr+ff))-0x1000);
+	      bytes[ff]= hxx;
+	   
+	    //  printf("%x", hxx);
+	      // if ((ff+1)%4==0){
+	     //   printf("\n");
+	      //}
+	      
+	    }
+	    
+            disas(bytes, size);
+
+	    printf("\n");
+	    }
 	  }
 	}
+
+	
       }
     }
     else if(elf[EI_CLASS]==ELFCLASS32)
@@ -280,59 +333,26 @@ void dump_elf_header64(Elf64_Ehdr* elf64)
   printf("Elf Section Header String Table Index(e_shstrndx): %i\n", elf64->e_shstrndx);
 }
 
-void dbg_examine_elf(const char* filepath)
+static const char* gcn_elfsym_info(unsigned char info)
 {
-  
-  char magic[4]={0};
-  int check_magic = 0; //is_elf_file(filepath, magic);
-  if (check_magic == 0) {
-    printf("This file is not an elf file or magic is corrupted\n");
-    printf("Printing magic bytes...\n"); 
-    printf("%x%c%c%c\n", magic[0],  magic[1], magic[2], magic[3]);
-    return;
+
+  switch(ELF64_ST_TYPE(info)){
+    case STT_NOTYPE: return "STT_NOTYPE";
+    case STT_OBJECT: return "STT_OBJECT";
+    case STT_FUNC: return "STT_FUNC";
+    case STT_SECTION: return "STT_SECTION";
+    case STT_FILE: return "STT_FILE";
   }
- 
-  char e_ident[EI_NIDENT]={0};
-  FILE* elf = fopen(filepath, "rb");
-  fread(e_ident, 1, EI_NIDENT, elf);
-  fclose(elf);
-
-  printf("elfclass %s\n", gcn_elf_class(e_ident[EI_CLASS]));
-  printf("elfendian %s\n", gcn_elf_endian(e_ident[EI_DATA]));
-  printf("elfversion %s\n", gcn_elf_version(e_ident[EI_VERSION]));
-  printf("elfosabi %s\n", gcn_elf_osabi(e_ident[ EI_OSABI]));
-
-  FILE* elfile = fopen(filepath, "rb");
-  if (e_ident[EI_CLASS]==ELFCLASS64)
-  {
-    Elf64_Ehdr elf64;
-    fread(&elf64, sizeof(Elf64_Ehdr), 1, elfile);
-    dump_elf_header64(&elf64);
-
-    Elf64_Phdr elf64phdr;
-    int i;
-    for (i =0; i<elf64.e_phnum; i++){
-      printf("%li\n", ftell(elfile));
-      fread(&elf64phdr, sizeof(Elf64_Phdr),1,elfile);
-      printf("type: %s\n", gcn_elfphdr_type(elf64phdr.p_type));
-    }
-
-    fseek(elfile, elf64.e_shoff, SEEK_SET);
-
-    Elf64_Shdr elf64shdr;
-    for(i=0; i<elf64.e_shnum;i++){
-      fread(&elf64shdr, sizeof(Elf64_Shdr), 1, elfile);
-    }
-  }
-  else if(e_ident[EI_CLASS]==ELFCLASS32)
-  {
-    Elf32_Ehdr elf32;
-    fread(&elf32, sizeof(Elf32_Ehdr),1, elfile);
-  }
-  else
-  {
-    printf("Unknown elf class!\n");
-  }
-  fclose(elfile);
+  return NULL;
 }
 
+enum{
+  CLASS,
+
+
+}
+
+void getconstantname(int constant, int constanttype)
+{
+
+}

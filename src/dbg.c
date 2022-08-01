@@ -10,6 +10,7 @@ int main(int argc, char* argv[])
 
   struct MappedElf map;
   MapElf(argv[1], &map);
+  return 0;
 
   int pid = dbg_create_process(argv[1]);
   dbg_catch_process(pid);

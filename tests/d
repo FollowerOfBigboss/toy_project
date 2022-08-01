@@ -1,0 +1,548 @@
+
+hello:     file format elf64-littleaarch64
+
+
+Disassembly of section .interp:
+
+00000000000002a8 <.interp>:
+ 2a8:	7379732f 	.inst	0x7379732f ; undefined
+ 2ac:	2f6d6574 	.inst	0x2f6d6574 ; undefined
+ 2b0:	2f6e6962 	umlsl	v2.4s, v11.4h, v14.h[6]
+ 2b4:	6b6e696c 	.inst	0x6b6e696c ; undefined
+ 2b8:	34367265 	cbz	w5, 6d104 <__dso_handle+0x6973c>
+	...
+
+Disassembly of section .note.android.ident:
+
+00000000000002c0 <note_android_ident>:
+ 2c0:	00000008 	udf	#8
+ 2c4:	00000084 	udf	#132
+ 2c8:	00000001 	udf	#1
+
+00000000000002cc <note_name>:
+ 2cc:	72646e41 	.inst	0x72646e41 ; undefined
+ 2d0:	0064696f 	.inst	0x0064696f ; undefined
+
+00000000000002d4 <note_data>:
+ 2d4:	00000018 	udf	#24
+
+00000000000002d8 <ndk_version>:
+ 2d8:	62333272 	.inst	0x62333272 ; undefined
+	...
+
+0000000000000318 <ndk_build_number>:
+ 318:	39373737 	strb	w23, [x25, #3533]
+ 31c:	00303236 	.inst	0x00303236 ; NYI
+	...
+
+Disassembly of section .dynsym:
+
+0000000000000358 <.dynsym>:
+	...
+ 370:	00000001 	udf	#1
+ 374:	00000012 	udf	#18
+	...
+ 388:	0000000e 	udf	#14
+ 38c:	00000012 	udf	#18
+	...
+ 3a0:	0000001a 	udf	#26
+ 3a4:	00000012 	udf	#18
+	...
+ 3b8:	0000002c 	udf	#44
+ 3bc:	00000012 	udf	#18
+	...
+
+Disassembly of section .gnu.version:
+
+00000000000003d0 <.gnu.version>:
+ 3d0:	00020000 	.inst	0x00020000 ; undefined
+ 3d4:	00020002 	.inst	0x00020002 ; undefined
+ 3d8:	Address 0x00000000000003d8 is out of bounds.
+
+
+Disassembly of section .gnu.version_r:
+
+00000000000003dc <.gnu.version_r>:
+ 3dc:	00010001 	.inst	0x00010001 ; undefined
+ 3e0:	00000033 	udf	#51
+ 3e4:	00000010 	udf	#16
+ 3e8:	00000000 	udf	#0
+ 3ec:	00050d63 	.inst	0x00050d63 ; undefined
+ 3f0:	00020000 	.inst	0x00020000 ; undefined
+ 3f4:	0000003b 	udf	#59
+ 3f8:	00000000 	udf	#0
+
+Disassembly of section .gnu.hash:
+
+0000000000000400 <.gnu.hash>:
+ 400:	00000001 	udf	#1
+ 404:	00000005 	udf	#5
+ 408:	00000001 	udf	#1
+ 40c:	0000001a 	udf	#26
+	...
+
+Disassembly of section .dynstr:
+
+000000000000041c <.dynstr>:
+ 41c:	635f5f00 	.inst	0x635f5f00 ; undefined
+ 420:	615f6178 	.inst	0x615f6178 ; undefined
+ 424:	69786574 	ldpsw	x20, x25, [x11, #-64]
+ 428:	5f5f0074 	.inst	0x5f5f0074 ; undefined
+ 42c:	6362696c 	.inst	0x6362696c ; undefined
+ 430:	696e695f 	ldpsw	xzr, x26, [x10, #-144]
+ 434:	5f5f0074 	.inst	0x5f5f0074 ; undefined
+ 438:	69676572 	ldpsw	x18, x25, [x11, #-200]
+ 43c:	72657473 	.inst	0x72657473 ; undefined
+ 440:	6674615f 	.inst	0x6674615f ; undefined
+ 444:	006b726f 	.inst	0x006b726f ; undefined
+ 448:	6e697270 	uabdl2	v16.4s, v19.8h, v9.8h
+ 44c:	6c006674 	stnp	d20, d25, [x19]
+ 450:	2e636269 	rsubhn	v9.4h, v19.4s, v3.4s
+ 454:	4c006f73 	st1	{v19.2d-v21.2d}, [x27]
+ 458:	00434249 	.inst	0x00434249 ; undefined
+ 45c:	7461642f 	.inst	0x7461642f ; undefined
+ 460:	61642f61 	.inst	0x61642f61 ; undefined
+ 464:	632f6174 	.inst	0x632f6174 ; undefined
+ 468:	742e6d6f 	.inst	0x742e6d6f ; undefined
+ 46c:	756d7265 	.inst	0x756d7265 ; undefined
+ 470:	69662f78 	ldpsw	x24, x11, [x27, #-208]
+ 474:	2f73656c 	.inst	0x2f73656c ; undefined
+ 478:	2f727375 	fcmla	v21.4h, v27.4h, v18.h[1], #270
+ 47c:	0062696c 	.inst	0x0062696c ; undefined
+ 480:	6462696c 	.inst	0x6462696c ; undefined
+ 484:	6f732e6c 	.inst	0x6f732e6c ; undefined
+	...
+
+Disassembly of section .rela.dyn:
+
+0000000000000490 <.rela.dyn>:
+ 490:	00002970 	udf	#10608
+ 494:	00000000 	udf	#0
+ 498:	00000403 	udf	#1027
+ 49c:	00000000 	udf	#0
+ 4a0:	00002790 	udf	#10128
+ 4a4:	00000000 	udf	#0
+ 4a8:	00002978 	udf	#10616
+ 4ac:	00000000 	udf	#0
+ 4b0:	00000403 	udf	#1027
+ 4b4:	00000000 	udf	#0
+ 4b8:	00002780 	udf	#10112
+ 4bc:	00000000 	udf	#0
+ 4c0:	00002980 	udf	#10624
+ 4c4:	00000000 	udf	#0
+ 4c8:	00000403 	udf	#1027
+ 4cc:	00000000 	udf	#0
+ 4d0:	00002770 	udf	#10096
+ 4d4:	00000000 	udf	#0
+ 4d8:	00002988 	udf	#10632
+ 4dc:	00000000 	udf	#0
+ 4e0:	00000403 	udf	#1027
+ 4e4:	00000000 	udf	#0
+ 4e8:	000016d8 	udf	#5848
+ 4ec:	00000000 	udf	#0
+
+Disassembly of section .rela.plt:
+
+00000000000004f0 <.rela.plt>:
+ 4f0:	000029a8 	udf	#10664
+ 4f4:	00000000 	udf	#0
+ 4f8:	00000402 	udf	#1026
+ 4fc:	00000001 	udf	#1
+	...
+ 508:	000029b0 	udf	#10672
+ 50c:	00000000 	udf	#0
+ 510:	00000402 	udf	#1026
+ 514:	00000002 	udf	#2
+	...
+ 520:	000029b8 	udf	#10680
+ 524:	00000000 	udf	#0
+ 528:	00000402 	udf	#1026
+ 52c:	00000003 	udf	#3
+	...
+ 538:	000029c0 	udf	#10688
+ 53c:	00000000 	udf	#0
+ 540:	00000402 	udf	#1026
+ 544:	00000004 	udf	#4
+	...
+
+Disassembly of section .rodata:
+
+0000000000000550 <.rodata>:
+ 550:	6c6c6568 	ldnp	d8, d25, [x11, #-320]
+ 554:	6f77206f 	umlal2	v15.4s, v3.8h, v7.h[3]
+ 558:	21646c72 	.inst	0x21646c72 ; undefined
+ 55c:	Address 0x000000000000055c is out of bounds.
+
+
+Disassembly of section .eh_frame_hdr:
+
+0000000000000560 <.eh_frame_hdr>:
+ 560:	3b031b01 	.inst	0x3b031b01 ; undefined
+ 564:	00000034 	udf	#52
+ 568:	00000005 	udf	#5
+ 56c:	000010f0 	udf	#4336
+ 570:	00000050 	udf	#80
+ 574:	00001134 	udf	#4404
+ 578:	00000070 	udf	#112
+ 57c:	00001148 	udf	#4424
+ 580:	00000088 	udf	#136
+ 584:	00001168 	udf	#4456
+ 588:	000000a0 	udf	#160
+ 58c:	00001178 	udf	#4472
+ 590:	000000b8 	udf	#184
+
+Disassembly of section .eh_frame:
+
+0000000000000598 <__FRAME_END__>:
+ 598:	00000014 	udf	#20
+ 59c:	00000000 	udf	#0
+ 5a0:	00527a01 	.inst	0x00527a01 ; undefined
+ 5a4:	011e7c01 	.inst	0x011e7c01 ; undefined
+ 5a8:	001f0c1b 	.inst	0x001f0c1b ; undefined
+ 5ac:	00000000 	udf	#0
+ 5b0:	0000001c 	udf	#28
+ 5b4:	0000001c 	udf	#28
+ 5b8:	00001098 	udf	#4248
+ 5bc:	00000044 	udf	#68
+ 5c0:	4c2d4400 	.inst	0x4c2d4400 ; undefined
+ 5c4:	9e101d0c 	.inst	0x9e101d0c ; undefined
+ 5c8:	00049d02 	.inst	0x00049d02 ; undefined
+ 5cc:	00000000 	udf	#0
+ 5d0:	00000014 	udf	#20
+ 5d4:	0000003c 	udf	#60
+ 5d8:	000010bc 	udf	#4284
+ 5dc:	00000014 	udf	#20
+	...
+ 5e8:	00000014 	udf	#20
+ 5ec:	00000054 	udf	#84
+ 5f0:	000010b8 	udf	#4280
+ 5f4:	00000020 	udf	#32
+	...
+ 600:	00000014 	udf	#20
+ 604:	0000006c 	udf	#108
+ 608:	000010c0 	udf	#4288
+ 60c:	00000010 	udf	#16
+	...
+ 618:	0000001c 	udf	#28
+ 61c:	00000084 	udf	#132
+ 620:	000010b8 	udf	#4280
+ 624:	00000034 	udf	#52
+ 628:	1d0c4c00 	.inst	0x1d0c4c00 ; undefined
+ 62c:	9d029e10 	.inst	0x9d029e10 ; undefined
+ 630:	00000004 	udf	#4
+	...
+
+Disassembly of section .text:
+
+000000000000163c <_start>:
+    163c:	d503249f 	bti	j
+    1640:	d280001d 	mov	x29, #0x0                   	// #0
+    1644:	d280001e 	mov	x30, #0x0                   	// #0
+    1648:	910003e0 	mov	x0, sp
+    164c:	14000001 	b	1650 <_start_main>
+
+0000000000001650 <_start_main>:
+    1650:	d503233f 	paciasp
+    1654:	d100c3ff 	sub	sp, sp, #0x30
+    1658:	a9027bfd 	stp	x29, x30, [sp, #32]
+    165c:	910083fd 	add	x29, sp, #0x20
+    1660:	b0000008 	adrp	x8, 2000 <printf@plt+0x8a0>
+    1664:	b0000009 	adrp	x9, 2000 <printf@plt+0x8a0>
+    1668:	b000000a 	adrp	x10, 2000 <printf@plt+0x8a0>
+    166c:	f944c108 	ldr	x8, [x8, #2432]
+    1670:	f944bd29 	ldr	x9, [x9, #2424]
+    1674:	f944b94a 	ldr	x10, [x10, #2416]
+    1678:	b0000002 	adrp	x2, 2000 <printf@plt+0x8a0>
+    167c:	910023e3 	add	x3, sp, #0x8
+    1680:	a900a7e8 	stp	x8, x9, [sp, #8]
+    1684:	f9000fea 	str	x10, [sp, #24]
+    1688:	f944c442 	ldr	x2, [x2, #2440]
+    168c:	aa1f03e1 	mov	x1, xzr
+    1690:	9400002c 	bl	1740 <__libc_init@plt>
+
+0000000000001694 <__atexit_handler_wrapper>:
+    1694:	d503245f 	bti	c
+    1698:	b4000060 	cbz	x0, 16a4 <__atexit_handler_wrapper+0x10>
+    169c:	aa0003f0 	mov	x16, x0
+    16a0:	d61f0200 	br	x16
+    16a4:	d65f03c0 	ret
+
+00000000000016a8 <atexit>:
+    16a8:	d503245f 	bti	c
+    16ac:	d503201f 	nop
+    16b0:	10ffff28 	adr	x8, 1694 <__atexit_handler_wrapper>
+    16b4:	d503201f 	nop
+    16b8:	10011882 	adr	x2, 39c8 <__dso_handle>
+    16bc:	aa0003e1 	mov	x1, x0
+    16c0:	aa0803e0 	mov	x0, x8
+    16c4:	1400001b 	b	1730 <__cxa_atexit@plt>
+
+00000000000016c8 <pthread_atfork>:
+    16c8:	d503245f 	bti	c
+    16cc:	d503201f 	nop
+    16d0:	100117c3 	adr	x3, 39c8 <__dso_handle>
+    16d4:	1400001f 	b	1750 <__register_atfork@plt>
+
+00000000000016d8 <main>:
+    16d8:	d10083ff 	sub	sp, sp, #0x20
+    16dc:	a9017bfd 	stp	x29, x30, [sp, #16]
+    16e0:	910043fd 	add	x29, sp, #0x10
+    16e4:	2a1f03e8 	mov	w8, wzr
+    16e8:	b9000be8 	str	w8, [sp, #8]
+    16ec:	b81fc3bf 	stur	wzr, [x29, #-4]
+    16f0:	d503201f 	nop
+    16f4:	10ff72e0 	adr	x0, 550 <note_end+0x1f8>
+    16f8:	9400001a 	bl	1760 <printf@plt>
+    16fc:	b9400be0 	ldr	w0, [sp, #8]
+    1700:	a9417bfd 	ldp	x29, x30, [sp, #16]
+    1704:	910083ff 	add	sp, sp, #0x20
+    1708:	d65f03c0 	ret
+
+Disassembly of section .plt:
+
+0000000000001710 <__cxa_atexit@plt-0x20>:
+    1710:	a9bf7bf0 	stp	x16, x30, [sp, #-16]!
+    1714:	b0000010 	adrp	x16, 2000 <printf@plt+0x8a0>
+    1718:	f944d211 	ldr	x17, [x16, #2464]
+    171c:	91268210 	add	x16, x16, #0x9a0
+    1720:	d61f0220 	br	x17
+    1724:	d503201f 	nop
+    1728:	d503201f 	nop
+    172c:	d503201f 	nop
+
+0000000000001730 <__cxa_atexit@plt>:
+    1730:	b0000010 	adrp	x16, 2000 <printf@plt+0x8a0>
+    1734:	f944d611 	ldr	x17, [x16, #2472]
+    1738:	9126a210 	add	x16, x16, #0x9a8
+    173c:	d61f0220 	br	x17
+
+0000000000001740 <__libc_init@plt>:
+    1740:	b0000010 	adrp	x16, 2000 <printf@plt+0x8a0>
+    1744:	f944da11 	ldr	x17, [x16, #2480]
+    1748:	9126c210 	add	x16, x16, #0x9b0
+    174c:	d61f0220 	br	x17
+
+0000000000001750 <__register_atfork@plt>:
+    1750:	b0000010 	adrp	x16, 2000 <printf@plt+0x8a0>
+    1754:	f944de11 	ldr	x17, [x16, #2488]
+    1758:	9126e210 	add	x16, x16, #0x9b8
+    175c:	d61f0220 	br	x17
+
+0000000000001760 <printf@plt>:
+    1760:	b0000010 	adrp	x16, 2000 <printf@plt+0x8a0>
+    1764:	f944e211 	ldr	x17, [x16, #2496]
+    1768:	91270210 	add	x16, x16, #0x9c0
+    176c:	d61f0220 	br	x17
+
+Disassembly of section .preinit_array:
+
+0000000000002770 <__PREINIT_ARRAY__>:
+    2770:	ffffffff 	.inst	0xffffffff ; undefined
+    2774:	ffffffff 	.inst	0xffffffff ; undefined
+	...
+
+Disassembly of section .init_array:
+
+0000000000002780 <__INIT_ARRAY__>:
+    2780:	ffffffff 	.inst	0xffffffff ; undefined
+    2784:	ffffffff 	.inst	0xffffffff ; undefined
+	...
+
+Disassembly of section .fini_array:
+
+0000000000002790 <__FINI_ARRAY__>:
+    2790:	ffffffff 	.inst	0xffffffff ; undefined
+    2794:	ffffffff 	.inst	0xffffffff ; undefined
+	...
+
+Disassembly of section .dynamic:
+
+00000000000027a0 <_DYNAMIC>:
+    27a0:	0000001d 	udf	#29
+    27a4:	00000000 	udf	#0
+    27a8:	00000040 	udf	#64
+    27ac:	00000000 	udf	#0
+    27b0:	00000001 	udf	#1
+    27b4:	00000000 	udf	#0
+    27b8:	00000064 	udf	#100
+    27bc:	00000000 	udf	#0
+    27c0:	00000001 	udf	#1
+    27c4:	00000000 	udf	#0
+    27c8:	00000033 	udf	#51
+    27cc:	00000000 	udf	#0
+    27d0:	0000001e 	udf	#30
+    27d4:	00000000 	udf	#0
+    27d8:	00000008 	udf	#8
+    27dc:	00000000 	udf	#0
+    27e0:	6ffffffb 	.inst	0x6ffffffb ; undefined
+    27e4:	00000000 	udf	#0
+    27e8:	08000001 	stxrb	w0, w1, [x0]
+    27ec:	00000000 	udf	#0
+    27f0:	00000015 	udf	#21
+	...
+    2800:	00000007 	udf	#7
+    2804:	00000000 	udf	#0
+    2808:	00000490 	udf	#1168
+    280c:	00000000 	udf	#0
+    2810:	00000008 	udf	#8
+    2814:	00000000 	udf	#0
+    2818:	00000060 	udf	#96
+    281c:	00000000 	udf	#0
+    2820:	00000009 	udf	#9
+    2824:	00000000 	udf	#0
+    2828:	00000018 	udf	#24
+    282c:	00000000 	udf	#0
+    2830:	6ffffff9 	.inst	0x6ffffff9 ; undefined
+    2834:	00000000 	udf	#0
+    2838:	00000004 	udf	#4
+    283c:	00000000 	udf	#0
+    2840:	00000017 	udf	#23
+    2844:	00000000 	udf	#0
+    2848:	000004f0 	udf	#1264
+    284c:	00000000 	udf	#0
+    2850:	00000002 	udf	#2
+    2854:	00000000 	udf	#0
+    2858:	00000060 	udf	#96
+    285c:	00000000 	udf	#0
+    2860:	00000003 	udf	#3
+    2864:	00000000 	udf	#0
+    2868:	00002990 	udf	#10640
+    286c:	00000000 	udf	#0
+    2870:	00000014 	udf	#20
+    2874:	00000000 	udf	#0
+    2878:	00000007 	udf	#7
+    287c:	00000000 	udf	#0
+    2880:	00000006 	udf	#6
+    2884:	00000000 	udf	#0
+    2888:	00000358 	udf	#856
+    288c:	00000000 	udf	#0
+    2890:	0000000b 	udf	#11
+    2894:	00000000 	udf	#0
+    2898:	00000018 	udf	#24
+    289c:	00000000 	udf	#0
+    28a0:	00000005 	udf	#5
+    28a4:	00000000 	udf	#0
+    28a8:	0000041c 	udf	#1052
+    28ac:	00000000 	udf	#0
+    28b0:	0000000a 	udf	#10
+    28b4:	00000000 	udf	#0
+    28b8:	0000006d 	udf	#109
+    28bc:	00000000 	udf	#0
+    28c0:	6ffffef5 	.inst	0x6ffffef5 ; undefined
+    28c4:	00000000 	udf	#0
+    28c8:	00000400 	udf	#1024
+    28cc:	00000000 	udf	#0
+    28d0:	00000020 	udf	#32
+    28d4:	00000000 	udf	#0
+    28d8:	00002770 	udf	#10096
+    28dc:	00000000 	udf	#0
+    28e0:	00000021 	udf	#33
+    28e4:	00000000 	udf	#0
+    28e8:	00000010 	udf	#16
+    28ec:	00000000 	udf	#0
+    28f0:	00000019 	udf	#25
+    28f4:	00000000 	udf	#0
+    28f8:	00002780 	udf	#10112
+    28fc:	00000000 	udf	#0
+    2900:	0000001b 	udf	#27
+    2904:	00000000 	udf	#0
+    2908:	00000010 	udf	#16
+    290c:	00000000 	udf	#0
+    2910:	0000001a 	udf	#26
+    2914:	00000000 	udf	#0
+    2918:	00002790 	udf	#10128
+    291c:	00000000 	udf	#0
+    2920:	0000001c 	udf	#28
+    2924:	00000000 	udf	#0
+    2928:	00000010 	udf	#16
+    292c:	00000000 	udf	#0
+    2930:	6ffffff0 	.inst	0x6ffffff0 ; undefined
+    2934:	00000000 	udf	#0
+    2938:	000003d0 	udf	#976
+    293c:	00000000 	udf	#0
+    2940:	6ffffffe 	.inst	0x6ffffffe ; undefined
+    2944:	00000000 	udf	#0
+    2948:	000003dc 	udf	#988
+    294c:	00000000 	udf	#0
+    2950:	6fffffff 	.inst	0x6fffffff ; undefined
+    2954:	00000000 	udf	#0
+    2958:	00000001 	udf	#1
+	...
+
+Disassembly of section .got:
+
+0000000000002970 <.got>:
+	...
+
+Disassembly of section .got.plt:
+
+0000000000002990 <.got.plt>:
+	...
+    29a8:	00001710 	udf	#5904
+    29ac:	00000000 	udf	#0
+    29b0:	00001710 	udf	#5904
+    29b4:	00000000 	udf	#0
+    29b8:	00001710 	udf	#5904
+    29bc:	00000000 	udf	#0
+    29c0:	00001710 	udf	#5904
+    29c4:	00000000 	udf	#0
+
+Disassembly of section .bss:
+
+00000000000039c8 <__dso_handle>:
+	...
+
+Disassembly of section .comment:
+
+0000000000000000 <.comment>:
+   0:	72646e41 	.inst	0x72646e41 ; undefined
+   4:	2064696f 	.inst	0x2064696f ; undefined
+   8:	31373728 	adds	w8, w25, #0xdcd
+   c:	39353034 	strb	w20, [x1, #3404]
+  10:	6162202c 	.inst	0x6162202c ; undefined
+  14:	20646573 	.inst	0x20646573 ; undefined
+  18:	72206e6f 	ands	w15, w19, #0xfffffff
+  1c:	31363134 	adds	w20, w9, #0xd8c
+  20:	31633338 	adds	w24, w25, #0x8cc, lsl #12
+  24:	6c632029 	ldnp	d9, d8, [x1, #-464]
+  28:	20676e61 	.inst	0x20676e61 ; undefined
+  2c:	73726576 	.inst	0x73726576 ; undefined
+  30:	206e6f69 	.inst	0x206e6f69 ; undefined
+  34:	302e3231 	adr	x17, 5c679 <__dso_handle+0x58cb1>
+  38:	2820382e 	stnp	w14, w14, [x1, #-256]
+  3c:	70747468 	adr	x8, e8ecb <__dso_handle+0xe5503>
+  40:	2f2f3a73 	.inst	0x2f2f3a73 ; undefined
+  44:	72646e61 	.inst	0x72646e61 ; undefined
+  48:	2e64696f 	.inst	0x2e64696f ; undefined
+  4c:	676f6f67 	.inst	0x676f6f67 ; undefined
+  50:	6f73656c 	sqshlu	v12.2d, v11.2d, #51
+  54:	65637275 	fnmls	z21.h, p4/m, z19.h, z3.h
+  58:	6d6f632e 	ldp	d14, d24, [x25, #-272]
+  5c:	6f6f742f 	uqshl	v15.2d, v1.2d, #47
+  60:	6168636c 	.inst	0x6168636c ; undefined
+  64:	6c2f6e69 	stnp	d9, d27, [x19, #-272]
+  68:	2d6d766c 	ldp	s12, s29, [x19, #-152]
+  6c:	6a6f7270 	bics	w16, w19, w15, lsr #28
+  70:	20746365 	.inst	0x20746365 ; undefined
+  74:	35333963 	cbnz	w3, 667a0 <__dso_handle+0x62dd8>
+  78:	64393964 	.inst	0x64393964 ; undefined
+  7c:	32666337 	.inst	0x32666337 ; undefined
+  80:	32363130 	orr	w16, w9, #0x7ffc00
+  84:	30333938 	adr	x24, 667a9 <__dso_handle+0x62de1>
+  88:	32313432 	orr	w18, w1, #0x1fff8000
+  8c:	38303764 	.inst	0x38303764 ; undefined
+  90:	64313436 	.inst	0x64313436 ; undefined
+  94:	32643235 	.inst	0x32643235 ; undefined
+  98:	65653766 	fmls	z6.h, p5/m, z27.h, z5.h
+  9c:	6c630029 	ldnp	d9, d0, [x1, #-464]
+  a0:	20676e61 	.inst	0x20676e61 ; undefined
+  a4:	73726576 	.inst	0x73726576 ; undefined
+  a8:	206e6f69 	.inst	0x206e6f69 ; undefined
+  ac:	302e3431 	adr	x17, 5c731 <__dso_handle+0x58d69>
+  b0:	0000352e 	udf	#13614
+  b4:	6b6e694c 	.inst	0x6b6e694c ; undefined
+  b8:	203a7265 	.inst	0x203a7265 ; undefined
+  bc:	20444c4c 	.inst	0x20444c4c ; undefined
+  c0:	302e3431 	adr	x17, 5c745 <__dso_handle+0x58d7d>
+  c4:	Address 0x00000000000000c4 is out of bounds.
+
